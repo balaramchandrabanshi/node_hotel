@@ -52,6 +52,49 @@ router.get('/:tasteType', async (req, res) => {
   }
 })
 
+// Perform put operation for MenuItem
+router.put('/:id', async (req, res) => {
+  try {
+    const menuItemId = req.params.id; // Extract the id from the URL parameter
+    const updatedMenuItemData = req.body; // Updated data for the MenuItem
+
+    const response = await MenuItem.findByIdAndUpdate(menuItemId, updatedMenuItemData, {
+      new: true,   // Return the updated document
+      runValidators: true   // Run Mongoose validation
+    })
+
+    if (!response) {
+      return res.status(404).json({error: 'MenuItem not found'});
+    }
+
+    console.log('data updated');
+    res.status(200).json(response);
+
+  }catch (err) {
+    console.log(err);
+    res.status(500).json({error: 'Internal Server Error'});
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const menuItemId = req.params.id;  // Extract the MenuItem's ID from the URL parameter
+
+    // Assuming you have a MenuItem model
+    const response = await MenuItem.findByIdAndDelete(menuItemId);
+    if (!response) {
+      return res.status(404).json({error: 'MenuItem not fount'});
+    }
+    console.log('data delete');
+    res.status(200).json({message: 'MenuItem Deleted Successfully'});
+
+  } catch(err) {
+    console.log(err);
+    res.status(500).json({error: 'Internal Server Error'});
+  }
+})
+
+
 module.exports = router;
 
 
