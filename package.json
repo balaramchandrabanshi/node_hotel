@@ -1,0 +1,18 @@
+{
+  "name": "first_project",
+  "version": "1.0.0",
+  "description": "its a first nodeJS project",
+  "license": "ISC",
+  "author": "rohan",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.3",
+    "nodemon": "^3.1.14"
+  }
+}
